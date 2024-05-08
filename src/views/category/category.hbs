@@ -18,6 +18,9 @@
                         <h4 class="card-title">{{title}}</h4>
                         <p class="card-text">{{description}}</p>
                         <p class="card-text">Price: {{price}}$</p>
+                        <form action="/products/{{_id}}" method="GET">
+                            <button type="submit" class="btn btn-info mt-auto">View</button>
+                        </form>
                     </div>
                 </div>
             </div>

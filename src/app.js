@@ -1,11 +1,11 @@
-import express from "express";
-import {create} from "express-handlebars";
-import path from "path";
-import morgan from "morgan";
-import methodOverride from "method-override";
-import flash from 'connect-flash'
-import session from "express-session";
-import passport from 'passport';
+const express = require( "express");
+const {create} = require( "express-handlebars");
+const path = require( "path");
+const morgan = require( "morgan");
+const methodOverride = require( "method-override");
+const flash = require( 'connect-flash')
+const session = require( "express-session");
+const passport = require( 'passport');
 
 //INIATIALIZATIONS
 const app = express();
@@ -63,4 +63,4 @@ app.use(require('./routes/category.routes'))
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
-export default app;
+module.exports = app;
