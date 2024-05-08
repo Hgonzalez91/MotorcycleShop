@@ -1,0 +1,31 @@
+<h1 class="mb-4">Purchase History</h1>
+{{#if purchaseHistory.length}}
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Fecha de Compra</th>
+                <th>Productos</th>
+                <th>Precio Total</th>
+                <th>Método de Pago</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each purchaseHistory}}
+                <tr>
+                    <td>{{this.createdAt}}</td>
+                    <td>
+                        <ul>
+                            {{#each products}}
+                                <li>{{this}}</li>
+                            {{/each}}
+                        </ul>
+                    </td>
+                    <td>{{this.totalPrice}}$</td>
+                    <td>{{this.paymentMethod}}</td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{else}}
+    <p>You do not have a purchase history</p>
+{{/if}}

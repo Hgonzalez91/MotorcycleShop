@@ -1,0 +1,56 @@
+<div class="container">
+    <h1 class="my-4">
+        Cart
+        <i class="fa-solid fa-cart-shopping"></i>
+    </h1>
+    <!-- Verificar si hay productos en el carrito -->
+    {{#if cart}}
+        <!-- Iterar sobre cada producto en el carrito -->
+        {{#each cart}}
+            <div class="row border-bottom py-3 justify-content-between align-items-center mb-4" row  >
+                <div>
+                    <h2>{{this.title}}</h2>
+                    <p>Precio: {{this.price}}$</p>
+                    <p>Cantidad: {{this.quantity}}</p>
+                </div>
+                <div class="col-md-4 text-right">
+                    <form action="/cart/remove" method="POST">
+                        <input type="hidden" name="productId" value="{{this.productId}}">
+                        <button type="submit" class="btn btn-danger">Eliminar del Carrito</button>
+                    </form>
+                </div>
+            </div>
+        {{/each}}
+        <div class="row mt-4">
+            <div class="col-md-12 text-center">
+                <form action="/cart/clear" method="POST">
+                    <button type="submit" class="btn btn-danger">Vaciar Carrito</button>
+                </form>
+            </div>
+        </div>
+        <div class="mt-4 d-flex justify-content-around align-items-center">
+            <p id="total" class=" h4 mb-0">Precio Total: {{totalPrice}}$</p>
+            <div>
+                <button id="checkout" class="btn btn-success mr-3">
+                    Pagar con Paypal
+                </button>
+                <a href="/payment/mobile-payment" class="btn btn-success">
+                    Pago Movil
+                </a>
+            </div>
+        </div>
+    {{else}}
+        <p>Cart empty</p>
+    {{/if}}
+</div>
+
+<script>
+    const checkout = document.getElementById('checkout');
+    checkout.addEventListener('click', async () => {
+        const response = await fetch('/create-order', {
+            method: 'POST'
+        })
+        const data = await response.json()
+        window.location.href = data.links[1].href
+    })
+</script>

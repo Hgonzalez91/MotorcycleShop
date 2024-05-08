@@ -1,0 +1,34 @@
+<div class="d-flex flex-column justify-content-center align-items-center text-center mb-5">
+    <h1 class="mb-4">Método de Pago con Pago Móvil</h1>
+    <p class="h4 mb-4">Por favor, sigue las instrucciones a continuación para completar tu Pago Móvil:</p>
+    <div class="w-50 p-3  border border-white rounded instructions mb-4">
+        <!-- Instrucciones para el pago móvil -->
+        <p class="h3">Venezuela 0102</p>
+        <p class="h3">29.557.964</p>
+        <p class="h3">0412 / 984 86 24</p>
+    </div>
+    <p class="h5 mb-4" onclick="completePayment()">Al completar tu Pago Movil haz un capture o pasa el número de referencia a este número de teléfono:</p>
+    <p class="h3 w-50 h-25 p-3 border border-white rounded">0412 / 743 44 16</p>
+</div>
+<div class="d-flex flex-column justify-content-center align-items-center text-center mb-3">
+    <h1 class="mb-4">Mobile Payment Data</h1>
+        <form action="/payment/save" method="POST">
+            <div class="mb-2">
+                <label class="h5" for="username">Full name:</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="mb-2">
+                <label class="h5" for="identification">CI:</label>
+                <input type="text" id="identification" name="identification" required>
+            </div>
+            <div class="mb-2">
+                <label class="h5" for="phoneNumber">Phone number:</label>
+                <input type="text" id="phoneNumber" name="phoneNumber" required>
+            </div>
+            <div class="mb-4">
+                <label class="h5" for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount" required>
+            </div>
+            <button class="btn btn-success" type="submit">Guardar Datos de Pago</button>
+        </form>
+</div>

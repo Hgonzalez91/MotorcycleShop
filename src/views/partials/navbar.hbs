@@ -1,0 +1,99 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <img src="/images/logoBlack.png" alt="Logo" style="height: 40px;">
+      ETPCA
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            role="button"
+            data-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Categories
+          </a>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/category/cascos">Cascos</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/category/guantes">Guantes</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/category/mascaras">Mascaras</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/category/visores">Visores</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/category/bolsos">Bolsos</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/category/maletas">Maletas</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/category/candados">Candados</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="/category/cauchos">Cauchos</a>
+          </div>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/about">About
+            <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/contact">Contact</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="/cart/purchase-history">Purchase History</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        {{#if user}}
+          {{#if isAdmin}}
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Products
+              </a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/products">All Products</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/products/add">Add a Product</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/payment/view-payments">View payments</a>
+              </div>
+            </li>
+          {{/if}}
+          <li class="nav-item active">
+            <a class="nav-link" href="/users/logout">
+              <i class="fa-solid fa-right-from-bracket fa-lg"></i>
+            </a>
+          </li>
+        {{else}}
+          <!-- Mostrar el menú de inicio de sesión y registro si no hay usuario autenticado -->
+          <li class="nav-item">
+              <a href="/users/signin" class="nav-link">Login</a>
+          </li>
+          <li class="nav-item">
+              <a href="/users/signup" class="nav-link">Register</a>
+          </li>
+        {{/if}}
+      </ul>
+    </div>
+  </div>
+</nav>

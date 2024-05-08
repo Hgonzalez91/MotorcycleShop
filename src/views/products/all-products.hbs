@@ -1,0 +1,29 @@
+<h1 class="mb-4">All Products</h1>
+<div class="row">
+    {{#each products}}
+        <div class="col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body d-flex flex-column">
+                    <img src="/uploads/{{image}}" class="card-img-top" alt="Product Image" style="heigth: 50px">
+                    <h4 class="card-title mb-3">{{title}}</h4>
+                    <p class="card-text mb-3">{{description}}</p>
+                    <p class="card-text mb-3">Category: {{category}}</p>
+                    <p class="card-text mb-3">Price: {{price}}$</p>
+                    <div class="d-flex justify-content-between align-items-center mt-auto">
+                        <div>
+                            <a href="/products/edit/{{_id}}" class="btn btn-primary btn-sm me-2">
+                                Edit
+                            </a>
+                            <form action="/products/delete/{{_id}}?_method=DELETE" method="POST" class="d-inline">
+                                <input type="hidden" name="_method" value="DELETE">
+                                <button type="submit" class="btn btn-danger btn-sm">
+                                    Delete
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

@@ -1,0 +1,39 @@
+<div class="row justify-content-between align-items-center mb-4">
+    <div class="col-md-auto">
+        <h1>EShop</h1>
+    </div>
+    <div class="col-md-auto">
+        <a href="/cart" class="btn btn-lg">
+            <i class="fa-solid fa-cart-shopping bi bi-cart3"></i>
+        </a>
+    </div>
+</div>
+
+<div class="container">
+        <div>
+            <h1>{{product.title}}</h1>
+            <p>{{product.description}}</p>
+            <p>Precio: {{product.price}}$</p>
+            <!-- Select para elegir la cantidad -->
+            <form action="/cart/add" method="POST">
+                <input type="hidden" name="productId" value="{{product._id}}">
+                <input type="hidden" name="title" value="{{product.title}}">
+                <input type="hidden" name="description" value="{{product.description}}">
+                <input type="hidden" name="price" value="{{product.price}}">
+                <button type="submit" class="btn btn-primary">Añadir al Carrito</button>
+                <label for="quantity">Cantidad:</label>
+                <select name="quantity" id="quantity">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                </select>
+            </form>
+        </div>
+    </div>
