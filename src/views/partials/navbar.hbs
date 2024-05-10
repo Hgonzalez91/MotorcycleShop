@@ -2,7 +2,7 @@
   <div class="container">
     <a class="navbar-brand" href="/">
       <img src="/images/logoBlack.png" alt="Logo" style="height: 40px;">
-      ETPCA
+      MotoTrend
     </a>
     <button
       class="navbar-toggler"
@@ -53,11 +53,8 @@
         <li class="nav-item active">
           <a class="nav-link" href="/contact">Contact</a>
         </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="/cart/purchase-history">Purchase History</a>
-        </li>
       </ul>
-      <ul class="navbar-nav ml-auto">
+      <ul class="navbar-nav ml-auto d-flex justify-content-center align-items-center">
         {{#if user}}
           {{#if isAdmin}}
             <li class="nav-item dropdown">
@@ -81,7 +78,7 @@
           {{/if}}
           <li class="nav-item active">
             <a class="nav-link" href="/users/logout">
-              <i class="fa-solid fa-right-from-bracket fa-lg"></i>
+              <i class="fa-solid fa-right-from-bracket fa-2x"></i>
             </a>
           </li>
         {{else}}

@@ -2,7 +2,7 @@
     <div class="col-md-auto">
         <h1>
             <img src="/images/logo.png" alt="Logo" style="height: 100px;">
-            ETPCA
+            MotoTrend
         </h1>
     </div>
     <div class="col-md-auto">
@@ -11,12 +11,24 @@
         </a>
     </div>
 </div>
-<div class="container">
+<!-- Banner -->
+<div class="container-fluid banner-bg text-white py-4 mb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <h2>Bienvenido a nuestra tienda virtual!</h2>
+                <p>Descubre nuestros ultimos productos.</p>
+                <a href="#productsSection" class="btn btn-light btn-lg">Comprar ahora</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container" id="productsSection" style="scroll-margin: 40px;">
     <div class="row">
         {{#each products}}
             <div class="col-md-4 mb-4">
                 <div class="card h-100">
-                    <div class="card-body d-flex flex-column">
+                    <div class="card-body d-flex flex-column justify-content-between">
                         <img src="/uploads/{{image}}" class="card-img-top" alt="Product Image">
                         <h4 class="card-title">{{title}}</h4>
                         <p class="card-text">{{description}}</p>

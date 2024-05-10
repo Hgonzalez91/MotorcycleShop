@@ -1,0 +1,11 @@
+{{!-- Mostrar la categoría actual --}}
+<h1>{{category}}</h1>
+
+{{!-- Iterar sobre los productos de la categoría --}}
+{{#each products}}
+    <div class="product">
+        <h2>{{title}}</h2>
+        <p>{{description}}</p>
+        <p>Precio: {{price}}$</p>
+    </div>
+{{/each}}
