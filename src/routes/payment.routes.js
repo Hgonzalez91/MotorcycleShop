@@ -8,17 +8,17 @@ const {
     getPayments,
     deletePayment
 } = require('../controllers/payment.controller');
-const {isInSession, isAuthenticated} = require('../helpers/auth')
+const { isAuthenticated } = require('../helpers/auth')
 
 //PAYPAL
 
 const router = Router();
 
-router.post('/create-order', isInSession, createOrder)
+router.post('/create-order', isAuthenticated, createOrder)
 
-router.get('/capture-order', isInSession, captureOrder, )
+router.get('/capture-order', isAuthenticated, captureOrder, )
 
-router.get('/cancel-order', isInSession, cancelOrder)
+router.get('/cancel-order', isAuthenticated, cancelOrder)
 
 // PAGO MOVIL
 

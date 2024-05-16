@@ -7,12 +7,14 @@
                 <th>Productos</th>
                 <th>Precio Total</th>
                 <th>Método de Pago</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
             {{#each purchaseHistory}}
                 <tr>
-                    <td>{{this.createdAt}}</td>
+                    <!-- Usamos la propiedad formattedDate en lugar de createdAt -->
+                    <td>{{this.formattedDate}}</td>
                     <td>
                         <ul>
                             {{#each products}}
@@ -22,6 +24,7 @@
                     </td>
                     <td>{{this.totalPrice}}$</td>
                     <td>{{this.paymentMethod}}</td>
+                    <td>{{this.paymentStatus}}</td>
                 </tr>
             {{/each}}
         </tbody>

@@ -60,8 +60,8 @@ app.use(require('./routes/payment.routes'))
 app.use(require('./routes/category.routes'))
 
 //Static Files
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-app.use('/images', express.static(path.join(__dirname, 'images')));
-app.use(express.static(path.join(__dirname, '/public')));
+app.use('/uploads', express.static(path.resolve(__dirname, 'uploads')));
+app.use('/images', express.static(path.resolve(__dirname, 'images')));
+app.use(express.static(path.resolve(__dirname, '/public')));
 
 module.exports = app;

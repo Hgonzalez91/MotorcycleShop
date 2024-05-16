@@ -8,12 +8,12 @@ helpers.isAuthenticated = (req, res, next) => {
     res.redirect('/users/signin');
 }
 
-helpers.isInSession = (req, res, next) => {
-    if (req.isAuthenticated()){
-        return next();
-    }
-    req.flash('error_msg', `You have not logged in`)
-    res.redirect('/users/signin');
-}
+helpers.isAdmin = (req, res, next) => {
+        if (req.isAuthenticated() && req.session.user.role === 'admin') {
+            return next();
+        }
+        req.flash('error_msg', 'Access denied. Only administrators can perform this action.');
+        res.redirect('/');
+    };
 
 module.exports = helpers;

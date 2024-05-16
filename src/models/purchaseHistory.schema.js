@@ -6,6 +6,10 @@ const purchaseHistorySchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Customer' // Nombre del modelo de clientes
     },
+    username: {
+      type: String,
+      required: true
+    },
     products: [{
       type: String,
       ref: 'Product'
@@ -17,9 +21,24 @@ const purchaseHistorySchema = new mongoose.Schema({
     paymentMethod: {
       type: String,
       required: true
-    }
-  },{
-    timestamps: true
+    },
+    identification: {
+      type: String,
+    },
+    phoneNumber: {
+      type: String,
+    },
+    amount: {
+      type: String,
+    },
+    paymentStatus: {
+      type: String,
+      required: true
+    },
+    createdAt: 
+    { 
+      type: Date, 
+      default: Date.now }
 });
 
 const PurchaseHistory = mongoose.model('PurchaseHistory', purchaseHistorySchema);

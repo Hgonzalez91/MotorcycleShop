@@ -11,7 +11,7 @@ const {
     deleteProduct 
 } = require('../controllers/products.controller')
 
-const {isAuthenticated} = require('../helpers/auth');
+const {isAuthenticated, isAdmin} = require('../helpers/auth');
 
 // Configura Multer
 const storage = multer.diskStorage({
@@ -26,21 +26,21 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 //New Product
-router.get('/products/add', isAuthenticated, renderProductForm);
+router.get('/products/add', isAuthenticated, isAdmin, renderProductForm);
 
-router.post('/products/new-product', isAuthenticated, upload.single('image'), createNewProduct);
+router.post('/products/new-product', isAuthenticated, upload.single('image'), isAdmin, createNewProduct);
 
 //Get Products
-router.get('/products', isAuthenticated, renderProducts);
+router.get('/products', isAuthenticated, isAdmin, renderProducts);
 
-router.get('/products/:id', getProductById);
+router.get('/products/:id', isAdmin, getProductById);
 
 //Edit Products
-router.get('/products/edit/:id', isAuthenticated, renderEditForm);
+router.get('/products/edit/:id', isAuthenticated, isAdmin, renderEditForm);
 
-router.put('/products/edit/:id', isAuthenticated, updateProduct);
+router.put('/products/edit/:id', isAuthenticated, isAdmin, updateProduct);
 
 //Delete Product
-router.delete('/products/delete/:id', isAuthenticated, deleteProduct);
+router.delete('/products/delete/:id', isAuthenticated, isAdmin, deleteProduct);
 
 module.exports = router;

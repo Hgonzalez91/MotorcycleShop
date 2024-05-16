@@ -1,5 +1,4 @@
 const paymentCtrl = {};
-const MobilePayment = require('../models/mobilePayment.schema')
 const PurchaseHistory = require('../models/purchaseHistory.schema');
 const axios = require("axios");
 const {
@@ -69,11 +68,12 @@ paymentCtrl.captureOrder = async (req, res) => {
 
     const newPurchase = new PurchaseHistory({
         customerId: req.user._id, // Suponiendo que tienes un usuario autenticado
+        username: req.session.user.name,
         products: titles, // Suponiendo que tienes la información de productos en la sesión
         totalPrice: totalPrice,
-        paymentMethod: 'PayPal', // o 'Pago Móvil' según el método de pago
+        paymentMethod: 'PayPal',
+        paymentStatus: 'procesando' // o 'Pago Móvil' según el método de pago
     });
-
     await newPurchase.save();
 
     req.flash('success_msg', `You're purchase has been completed successfully`)
@@ -92,27 +92,23 @@ paymentCtrl.pagoMovil = (req, res) => {
 
 paymentCtrl.saveMobilePayment =  async (req, res) => {
     try {
-        const { username, identification, phoneNumber, amount } = req.body;
-        const newPayment = new MobilePayment({
-            username,
-            identification,
-            phoneNumber,
-            amount
-        });
-        await newPayment.save();
         if (!req.session.cart || req.session.cart.length === 0) {
             return res.status(400).json({ message: 'El carrito está vacío' });
         }
-        // Obtener los nombres de productos de la sesión
         const titles = req.session.titles;
         const totalPrice = req.session.totalPrice;
-
-        // Crear un nuevo registro en el historial de compras
+        
+        const {  identification, phoneNumber, amount } = req.body;
         const newPurchase = new PurchaseHistory({
-            customerId: req.user._id, // Suponiendo que tienes un usuario autenticado
-            products: titles, // Suponiendo que tienes la información de productos en la sesión
+            customerId: req.user._id,
+            username: req.session.user.name,
+            products: titles,
             totalPrice: totalPrice,
-            paymentMethod: 'Pago Móvil', // Indicar el método de pago
+            paymentMethod: 'Pago Móvil',
+            identification,
+            phoneNumber,
+            amount,
+            paymentStatus: 'Processing' 
         });
 
         await newPurchase.save();
@@ -127,8 +123,12 @@ paymentCtrl.saveMobilePayment =  async (req, res) => {
 
 paymentCtrl.getPayments = async (req, res) => {
     try {
-        const payments = await MobilePayment.find();
+        const payments = await PurchaseHistory.find();
         const isAdmin = req.session.user ? req.session.user.role === 'admin' : false;
+        // Formatear la fecha
+        payments.forEach(payment => {
+            payment.formattedDate = payment.createdAt.toLocaleString();
+        });
         res.render('cart/payments/paymentsList', { payments, isAdmin });
     } catch (error) {
         console.error('Error al obtener los pagos móviles:', error);
@@ -137,7 +137,7 @@ paymentCtrl.getPayments = async (req, res) => {
 };
 
 paymentCtrl.deletePayment = async (req, res) => {
-    const deletePayment = await MobilePayment.findByIdAndDelete(req.params.id)
+    const deletePayment = await PurchaseHistory.findByIdAndDelete(req.params.id)
     req.flash('success_msg', 'Payment Deleted Succesfully');
     res.redirect('/payment/view-payments')
 };

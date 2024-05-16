@@ -1,13 +1,17 @@
 <div class="d-flex flex-column justify-content-center align-items-center text-center">
     <h1 class="mb-4">Mobile Payment List</h1>
-    <table>
+    <table class="mb-4">
         <thead>
             <tr class="border border-white rounded">
                 <th class="h4 p-3 border border-white rounded">Name</th>
                 <th class="h4 p-3 border border-white rounded">C.I</th>
+                <th class="h4 p-3 border border-white rounded">Products</th>
+                <th class="h4 p-3 border border-white rounded">totalPrice</th>
                 <th class="h4 p-3 border border-white rounded">Phone Number</th>
                 <th class="h4 p-3 border border-white rounded">Amount</th>
                 <th class="h4 p-3 border border-white rounded">Date</th>
+                <th class="h4 p-3 border border-white rounded">Method</th>
+                <th class="h4 p-3 border border-white rounded">Confirm</th>
                 <th class="h4 p-3 border border-white rounded">Delete</th>
             </tr>
         </thead>
@@ -16,9 +20,16 @@
                 <tr class="border border-white rounded">
                     <td class="h5 p-3 border border-white rounded">{{this.username}}</td>
                     <td class="h5 p-3 border border-white rounded">{{this.identification}}</td>
+                    <td class="h5 p-3 border border-white rounded">{{this.products}}</td>
+                    <td class="h5 p-3 border border-white rounded">{{this.totalPrice}}$</td>
                     <td class="h5 p-3 border border-white rounded">{{this.phoneNumber}}</td>
-                    <td class="h5 p-3 border border-white rounded">{{this.amount}} Bs</td>
-                    <td class="h5 p-3 border border-white rounded">{{this.createdAt}}</td>
+                    <td class="h5 p-3 border border-white rounded">{{this.amount}}Bs</td>
+                    <td class="h5 p-3 border border-white rounded">{{this.formattedDate}}</td>
+                    <td class="h5 p-3 border border-white rounded">{{this.paymentMethod}}</td>
+                    <td class="h5 p-3 border border-white rounded">
+                        <a href="/cart/purchase-edit/{{this._id}}"><i class="fa-solid fa-check-to-slot"></i></a>
+                        {{this.paymentStatus}}
+                    </td>
                     <td class="h5 p-3 border border-white rounded">
                         <a href="/payment/delete/{{this._id}}"><i class="fa-solid fa-eraser fa-lg"></i></a>
                     </td>
