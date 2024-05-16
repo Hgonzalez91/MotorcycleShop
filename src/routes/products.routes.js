@@ -33,7 +33,7 @@ router.post('/products/new-product', isAuthenticated, upload.single('image'), is
 //Get Products
 router.get('/products', isAuthenticated, isAdmin, renderProducts);
 
-router.get('/products/:id', isAdmin, getProductById);
+router.get('/products/:id', getProductById);
 
 //Edit Products
 router.get('/products/edit/:id', isAuthenticated, isAdmin, renderEditForm);
